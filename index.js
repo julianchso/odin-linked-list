@@ -74,8 +74,45 @@ class LinkedList {
     return this;
   }
 
-  // TODO HERE:
-  contains(value) {}
+  contains(value) {
+    if (typeof value != 'number') return `please enter a valid number`;
+
+    let pointer = this.listHead;
+    while (pointer.nextNode !== null) {
+      if (pointer.value == value) {
+        return true;
+      } else {
+        pointer = pointer.nextNode;
+      }
+    }
+    return false;
+  }
+
+  find(value) {
+    if (typeof value != 'number') return `please enter a valid number`;
+
+    let index = 0;
+    let pointer = this.listHead;
+    while (pointer.nextNode !== null) {
+      if (pointer.value == value) {
+        return index;
+      } else {
+        pointer = pointer.nextNode;
+        index++;
+      }
+    }
+    return null;
+  }
+
+  toString() {
+    let string = '';
+    let pointer = this.listHead;
+    while (pointer) {
+      string = string + `(${pointer.value}) -> `;
+      pointer = pointer.nextNode;
+    }
+    return `${string} + null`;
+  }
 }
 
 class Node {
@@ -99,9 +136,8 @@ myList.append(14);
 myList.append(15);
 myList.append(16);
 // console.log(myList.prepend(999));
-
-console.log(myList.at(99));
-console.log(myList.at(7));
+// console.log(find(16));
+console.log(myList.toString());
 
 // console.log(myList.size());
 // console.log(myList.tail());
